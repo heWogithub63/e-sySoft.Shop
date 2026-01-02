@@ -433,6 +433,8 @@ function createBilling() {
                         blMainTabRw[n +o+1].appendChild(cell);
 
                         blMainTab.appendChild(blMainTabRw[n +o+ 1]);
+
+
                      }
 
              }
@@ -446,8 +448,20 @@ function createBilling() {
           for(var i=0; i<kindOfPayTx.length; i++) {
               var kindOfPayTb = document.createElement('tr');
                   kindOfPayTb.appendChild(createCheckBox(i,kindOfPayTx[i],'20px','20px'));
-              div_billing.appendChild(kindOfPayTb)
+              div_billing.appendChild(kindOfPayTb);
          }
+
+         var cell = document.createElement('td');
+             cell.style.width = '200px';
+             cell.style.textAlign = 'right';
+             cell.appendChild(createButton(1,'Cancel'));
+         var rw = document.createElement('tr');
+             rw.style.width = '220px';
+             rw.style.height = '25px';
+
+             rw.appendChild(cell);
+
+         div_billing.appendChild(rw);
 
 }
 
@@ -739,6 +753,7 @@ function createDDImg(id,path,thema,height,width) {
              if (Currency === '')
                  PrintElem('popUp');
              else {
+                 resize(document.getElementBy('upLoad'));
                  elementPrint.print('Recipe/Formula');
              }
              return;
@@ -988,8 +1003,7 @@ function createCheckBox(id,text,width,height) {
     var row = document.createElement("tr");
 
     var cell = document.createElement("td1");
-        cell.style.width = '250px';
-        cell.style.textAlign = 'left';
+        cell.style.width = '25px';
 
     checkbox[id] = document.createElement('input');
 	checkbox[id].type = "checkbox";
@@ -1013,7 +1027,9 @@ function createCheckBox(id,text,width,height) {
     })
 
     cell.appendChild(checkbox[id]);
-    cell.appendChild(createTx(0,text,'black','220px','25px','left','12px'));
+    row.appendChild(cell);
+    var cell = document.createElement("td1");
+        cell.appendChild(createTx(0,text,'black','220px','25px','center','12px'));
     if(text.includes('Crypto'))
         cell.appendChild(createDDImg(dDImg.length,'Icons/QRCryptoApp.png','Crypto','42px','42px'));
 
@@ -1255,6 +1271,21 @@ function getOffset(el) {
     left: rect.left + window.scrollX,
     top: rect.top + window.scrollY
   };
+}
+
+function resize(elem){
+    let wrapper = document.getElementById('div0');
+    let maxWidth = elem.clientWidth,
+        maxHeight = elem.clientHeight;
+    let scale,
+    width = window.innerWidth,
+    height = window.innerHeight,
+    isMax = width >= maxWidth && height >= maxHeight;
+
+    scale = Math.min(width/maxWidth, height/maxHeight);
+    elem.style.transform = isMax?'':'scale(' + scale + ')';
+    wrapper.style.width = isMax?'':maxWidth * scale;
+    wrapper.style.height = isMax?'':maxHeight * scale;
 }
 
 function resizeImage(base64Str, maxWidth, maxHeight) {
