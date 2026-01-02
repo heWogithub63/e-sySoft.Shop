@@ -982,7 +982,7 @@ function createMenEditField (style, n, name, value) {
 
 function createCheckBox(id,text,width,height) {
     var row = document.createElement("tr");
-        
+
     var cell = document.createElement("td1");
         cell.style.width = '250px';
         cell.style.textAlign = 'left';
