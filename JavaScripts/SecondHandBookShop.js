@@ -36,6 +36,7 @@
 
    var div1_2;
    var div2;
+   var div_billing;
    var obj = new Object();
    var collector = new Object();
    var caller = '';
@@ -82,6 +83,11 @@ function SecondHandBookShop () {
        tbr.appendChild(createPMImg(1,'Icons/empty1.png','plus_closed', 25,25));
        tbr.appendChild(createPMImg(2,'Icons/minus_closed.png','BookOutput', 25,25));
 
+       var cell = document.createElement('td');
+       cell.style = 'border:0px solid #7f7f7f; text-align:center; width:25%';
+       cell.appendChild(createTImg(0,'Icons/Warenkorb_closed.png','Basket', 45,60));
+       tbr.appendChild(cell);
+
 
    var tb1_1 = document.getElementById('tb1_1');
    var tr1_1 = document.createElement('tr1_1');
@@ -96,20 +102,14 @@ function SecondHandBookShop () {
    for(var i=0;i<str.length;i++) {
 
        var dCell = document.createElement('td');
-       dCell.style = 'border:0px solid #7f7f7f; text-align:center; width:50%';
+       dCell.style = 'border:0px solid #7f7f7f; text-align:center; width:240px';
 
-       dCell.appendChild(createEditField('border:0px solid 7f7f7f; width:50%; align:left', i, str[i], str[i].replace('_list','')));
+       dCell.appendChild(createEditField('border:0px solid 7f7f7f; width:120px; align:left', i, str[i], str[i].replace('_list','')));
        dCell.appendChild(createDImg(i,'Icons/list_closed.png',str[i], 25,25));
 
        tr1_1.appendChild(dCell);
    }
-
-   var cell = document.createElement('td');
-       cell.style = 'border:0px solid #7f7f7f; text-align:center; width:50%';
-       cell.appendChild(createTImg(0,'Icons/Warenkorb_closed.png','Basket', 45,60));
-       tr1_1.appendChild(cell);
-
-   tb1_1.appendChild(tr1_1);
+       tb1_1.appendChild(tr1_1);
 }
 
 function createSurface (loadedObjects) {
@@ -346,7 +346,7 @@ function createFormBlatt(name) {
 }
 
 function createBilling() {
-     var div_billing = document.getElementById('popUp');
+     div_billing = document.getElementById('popUp');
 
      while (div_billing.hasChildNodes()) {
             div_billing.removeChild(div_billing.lastChild);
@@ -750,10 +750,11 @@ function createDDImg(id,path,thema,height,width) {
 
     dDImg[id].onclick = function(event) {
         if(event.target.name === 'Printer') {
+
              if (Currency === '')
                  PrintElem('popUp');
              else {
-                 resize(document.getElementBy('upLoad'));
+                 resize(div_billing);
                  elementPrint.print('Recipe/Formula');
              }
              return;
@@ -801,6 +802,22 @@ function createDDImg(id,path,thema,height,width) {
     };
 
   return dDImg[id];
+}
+
+function resize(div){
+    var width = parseInt(div.style.width.substring(0,div.style.width.indexOf('px'))),
+        height = parseInt(div.style.height.substring(0,div.style.height.indexOf('px')));
+
+    let maxWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width,
+        maxHeight = (window.innerHeight > 0) ? window.innerHeight : screen.height;
+    let scale,
+         isMax = maxWidth >= width && maxHeight >= height;
+
+    scale = Math.min(maxWidth/width, maxHeight/height);
+
+    div.style.width = isMax?'':maxWidth * scale;
+    div.style.height = isMax?'':maxHeight * scale;
+
 }
 
 function createButton(id,text) {
@@ -1271,21 +1288,6 @@ function getOffset(el) {
     left: rect.left + window.scrollX,
     top: rect.top + window.scrollY
   };
-}
-
-function resize(elem){
-    let wrapper = document.getElementById('div0');
-    let maxWidth = elem.clientWidth,
-        maxHeight = elem.clientHeight;
-    let scale,
-    width = window.innerWidth,
-    height = window.innerHeight,
-    isMax = width >= maxWidth && height >= maxHeight;
-
-    scale = Math.min(width/maxWidth, height/maxHeight);
-    elem.style.transform = isMax?'':'scale(' + scale + ')';
-    wrapper.style.width = isMax?'':maxWidth * scale;
-    wrapper.style.height = isMax?'':maxHeight * scale;
 }
 
 function resizeImage(base64Str, maxWidth, maxHeight) {
