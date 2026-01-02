@@ -937,6 +937,7 @@ function createButton(id,text) {
                     popupDialog ('popupDialog','none');
                     pmImg[0].src = pmImg[0].src.replace('open','closed') ;
                     pmImg[2].src = pmImg[2].src.replace('open','closed') ;
+                    tImg[0].src = tImg[0].src.replace('open','closed') ;
                 }
             }
 
@@ -956,7 +957,10 @@ function createBlButton(id,text,name) {
                           "\n\tin the attached 'PDF'\n\n\tPlease give me an email back\n\tincludes the Postage\n\tand when you can send the package\n\n\t"+
                           "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money with the given Identifier";
 
-               window.open('mailto:'+event.target.name+'?subject=Interest on your Book(s)&body='+body);
+               if (Currency === '')
+                   window.open('mailto:'+event.target.name+'?subject=Interest on your Book(s)&body='+body);
+               else
+                   eMail.send([event.target.name], 'Interest on your Book(s)', body);
 
             };
 
