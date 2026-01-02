@@ -54,7 +54,7 @@
    var steerBtn = [];
    var checkbox = [];
 
-   var calcFactor = 0.00;
+   var calcFactor = 1;
    var Currency = '';
 
 
@@ -736,7 +736,11 @@ function createDDImg(id,path,thema,height,width) {
 
     dDImg[id].onclick = function(event) {
         if(event.target.name === 'Printer') {
-             PrintElem('popUp');
+             if (Currency === '')
+                 PrintElem('popUp');
+             else {
+                 elementPrint.print('Recipe/Formula');
+             }
              return;
         } else if(event.target.name === 'Crypto') {
 
