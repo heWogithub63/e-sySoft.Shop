@@ -959,8 +959,8 @@ function createBlButton(id,text,name) {
 
                if (Currency === '')
                    window.open('mailto:'+event.target.name+'?subject=Interest on your Book(s)&body='+body);
-               else
-                   eMail.send([event.target.name], 'Interest on your Book(s)', body);
+               else 
+                   eMail.send(event.target.name, 'Interest on your Book(s)', body);
 
             };
 
