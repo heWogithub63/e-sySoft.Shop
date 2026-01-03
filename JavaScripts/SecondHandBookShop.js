@@ -834,6 +834,9 @@ function createButton(id,text) {
                 
                 var n1 = 0;
                 if(event.target.innerText == 'Ok') {
+
+                    var datum = getActualDate(1,new Date());
+
                     for(var i=0;i<textMenEditor.length;i++)
                         if(textMenEditor[i].value == '' || textMenEditor[i].value.length < 3 ||
                             (textMenEditor[i].name.startsWith('e-mail') && !textMenEditor[i].value.includes('@')) ||
@@ -843,7 +846,7 @@ function createButton(id,text) {
                              n1++;
                     if(n1 == textMenEditor.length) {
                         Object.assign(obj, {
-                              InputDate: newDate()
+                              InputDate: datum
                         })
                         for(var i=0;i<textMenEditor.length;i++) {
                             if(textMenEditor[i].name.includes('IBAN'))
@@ -959,11 +962,8 @@ function createBlButton(id,text,name) {
 
                if (Currency === '')
                    window.open('mailto:'+event.target.name+'?subject=Interest on your Book(s)&body='+body);
-               else {
-
-                   console.dir(event.target.name);
+               else
                    sendMail.sendTo(event.target.name, 'Interest on your Book(s)', body);
-               }
 
             };
 
@@ -1384,6 +1384,35 @@ function base64ToFile(base64String, mimeType, fileName) {
 function generateToken() {
     return Math.random().toString(36).slice(2);
 }
+
+function getActualDate(kind, date) {
+    var today = date;
+    var dd = +(String(today.getDate()).padStart('2,0'));
+    var mm = +(String(today.getMonth() +1).padStart('2,0'));
+    var yyyy = +(today.getFullYear());
+
+    var hh = +(String(today.getHours()).padStart('2,0'));
+    var min = +(String(today.getMinutes()).padStart('2,0'));
+
+    yyyy = String(yyyy);
+    if(mm < 10) mm = "0"+String(mm);
+    else mm = String(mm);
+    if(dd < 10) dd = "0"+String(dd);
+    else dd = String(dd);
+
+    if(hh < 10) hh = "0"+String(hh);
+    else hh = String(hh);
+    if(min < 10) min = "0"+String(min);
+    else min = String(min);
+
+    if(kind == 0)
+        return yyyy+mm+dd;
+    else if(kind == 1)
+         return dd+"-"+mm+"-"+yyyy;
+    else
+         return dd+"."+mm+"."+yyyy+'--'+hh+':'+min+' Uhr';
+}
+
 
 async function dataUpload(url, data) {
 
