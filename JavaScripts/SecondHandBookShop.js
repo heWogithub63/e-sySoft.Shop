@@ -426,8 +426,12 @@ function createBilling() {
                             gSum = gSum + '.00';
 
                         var curr = '';
-                        if(Currency !== '')
-                            curr = '  »( ' +Number((parseFloat(gSum) *calcFactor).toFixed(2))+ '  ' +Currency+ ' )« ';
+                        if(Currency !== '' && Currency !== 'USD') {
+                            var corr = Number((parseFloat(gSum) *calcFactor).toFixed(2));
+                            if((''+corr).includes('.') && (''+corr).substring((''+corr).indexOf('.')+1).length == 1) corr = corr +'0';
+                            else if(!(''+corr).includes('.')) corr = corr + '.00';
+                            curr = '  »( corr+ '  ' +Currency+ ' )« ';
+                        }
                         var cell = document.createElement('td') ;
                              cell.appendChild(createTx(cellTx.length,gSum +'  USD  '+curr+' + postage','blue','100px','25px','left','14px'));
                         blMainTabRw[n +o+1].appendChild(cell);
