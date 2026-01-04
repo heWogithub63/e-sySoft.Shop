@@ -270,8 +270,8 @@ function createFormBlatt(name) {
 
 
          //div1.style.background = '#90000000';
-         div1.style.width = '280px';
-         div1.style.height = '320px';
+         div1.style.width = '300px';
+         div1.style.height = '380px';
          div1.style.padding = '5px';
          div1.style.overflow = 'auto';
          div1.style.overflowX = 'hidden';
@@ -355,8 +355,8 @@ function createBilling() {
      blBtn = new Array()
 
 
-         div_billing.style.width = '280px';
-         div_billing.style.height = '320px';
+         div_billing.style.width = '300px';
+         div_billing.style.height = '380px';
          div_billing.style.padding = '5px';
          div_billing.style.overflow = 'auto';
          div_billing.style.overflowX = 'hidden';
@@ -758,7 +758,7 @@ function createDDImg(id,path,thema,height,width) {
              if (Currency === '')
                  PrintElem('popUp');
              else {
-                 resize(div_billing);
+                 // resize(div_billing);
                  elementPrint.print('Recipe/Formula');
              }
              return;
