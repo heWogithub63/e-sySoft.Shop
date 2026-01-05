@@ -46,7 +46,7 @@
    var animImg = [];
 
 
-   var topics = ['Alternative_Med', 'Crime', 'Fiction', 'Nature', 'Medicine', 'Romantic', 'Technic', 'Biologic', 'Music', 'Journalism', 'Art', 'Cooking', 'EDV', 'Programming', 'Religion', 'Travel', 'History', 'Science'];
+   var topics = ['Alternative', 'Crime', 'Fiction', 'Nature', 'Medicine', 'Romantic', 'Technic', 'Biologic', 'Music', 'Journalism', 'Art', 'Cooking', 'EDV', 'Programming', 'Religion', 'Travel', 'History', 'Science'];
        topics.sort();
    var InputFormStr = ["Pay 'to' IBAN", 'e-mail', 'Topic','Title','Author','Status','Price'];
    var DeleteFormStr = ['e-mail', 'Topic','Title','Author'];
