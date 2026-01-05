@@ -244,6 +244,7 @@ function createFormBlatt(name) {
            caller = name;
            obj  = {
                   CalledBy: caller,
+                  URI: 'mongodb+srv://wh:admin01@cluster0.kmwrpfb.mongodb.net/?retryWrites=true&w=majority',
                   Database: 'SecondHandBookShop',
                   Collection: ''
            }
@@ -727,6 +728,7 @@ function createDImg(id,path,thema,height,width) {
                  obj  = {
 
                         CalledBy: caller,
+                        URI: 'mongodb+srv://wh:admin01@cluster0.kmwrpfb.mongodb.net/?retryWrites=true&w=majority',
                         Database: 'SecondHandBookShop',
                         Collection: 'Topic_' +textEditor[0].value
                  }
@@ -895,6 +897,7 @@ function createButton(id,text) {
 
                             obj  = {
                                    CalledBy: caller,
+                                   URI: 'mongodb+srv://wh:admin01@cluster0.kmwrpfb.mongodb.net/?retryWrites=true&w=majority',
                                    Database: 'SecondHandBookShop',
                                    Collection: ''
                             }
@@ -1160,6 +1163,7 @@ function createListTx (n,name,kindOf,size,width,height) {
                obj  = {
 
                       CalledBy: caller,
+                      URI: 'mongodb+srv://wh:admin01@cluster0.kmwrpfb.mongodb.net/?retryWrites=true&w=majority',
                       Database: 'SecondHandBookShop',
                       Collection: 'Topic_' +textEditor[0].value,
                       Author: indexA
