@@ -1078,7 +1078,7 @@ function createCheckBox(id,text,width,height) {
     var cell = document.createElement("td1");
         cell.appendChild(createTx(0,text,'black','220px','25px','center','12px'));
     if(text.includes('Crypto'))
-        cell.appendChild(createDDImg(dDImg.length,'Icons/QRCryptoApp.png','Crypto','42px','42px'));
+        cell.appendChild(createDDImg(dDImg.length,'Icons/QR_Code_CryptoWallet.png','Crypto','42px','42px'));
 
     row.appendChild(cell);
     return row;
