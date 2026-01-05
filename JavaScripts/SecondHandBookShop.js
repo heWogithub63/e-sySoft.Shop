@@ -46,7 +46,7 @@
    var animImg = [];
 
 
-   var topics = ['Alternative_Med', 'Crime', 'Fiction', 'Nature', 'Medicine', 'Romantic', 'Technic', 'Biologic', 'Music', 'Journalism'];
+   var topics = ['Alternative_Med', 'Crime', 'Fiction', 'Nature', 'Medicine', 'Romantic', 'Technic', 'Biologic', 'Music', 'Journalism', 'Art', 'Music', 'Cooking', 'EDV', 'Programming', 'Religion', 'Traveling', 'History', 'Science'];
        topics.sort();
    var InputFormStr = ["Pay 'to' IBAN", 'e-mail', 'Topic','Title','Author','Status','Price'];
    var DeleteFormStr = ['e-mail', 'Topic','Title','Author'];
@@ -723,7 +723,7 @@ function createDImg(id,path,thema,height,width) {
 
                  createDialogList(topics,'div3','Topic',x,y);
             } else if(event.target.name.startsWith('Author')) {
-
+                 collector = new Object();
                  caller = 'RequestAuthors';
                  obj  = {
 
