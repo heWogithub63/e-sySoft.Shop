@@ -964,11 +964,11 @@ function createBlButton(id,text,name) {
             blBtn[id].onclick = function(event) {
                var iban = '',
                    identify = '',
-                   publicKey ) = '';
+                   publicKey  = '';
                if(caller.includes('Bank Transfer') || caller.includes('Credit Card')) {
                     iban = 'IBAN : ' +IBAN;
                     identify = ' with the Identifier'+ idNr;
-               } else if(caller.includes('Crypto') {
+               } else if(caller.includes('Crypto')) {
                        publicKey = 'your BlockChainNetwork:  with the AccountKey(PublicKey):  '; iban = 'BlockChainAccount';
                };
 
