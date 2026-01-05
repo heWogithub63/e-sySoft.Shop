@@ -9,8 +9,8 @@
    var img_front;
    var img_back;
    var IBAN;
-   var IbAn;
-   var idNr;
+   var IbAn = [];
+   var idNr = [];
    var eMail;
    var Author;
    var Title;
