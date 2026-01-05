@@ -9,6 +9,7 @@
    var img_front;
    var img_back;
    var IBAN;
+   var IbAn;
    var idNr;
    var eMail;
    var Author;
@@ -390,10 +391,13 @@ function createBilling() {
              blMainTab.appendChild(blMainTabRw[n]);
              for (var o=0; o<collector[ob].length; o++) {
 
-                     var IBAN = collector[ob][o].IBAN;
+                     IbAn[n] = collector[ob][o].IBAN;
+                     idNr[n] = getRandomInt(0,10000);
+
                      var author = collector[ob][o].Author;
                      var title = collector[ob][o].Title;
                      var price = collector[ob][o].Price
+
 
                      sum = sum  + parseFloat(price);
 
@@ -413,12 +417,11 @@ function createBilling() {
                         blMainTabRw[n +o+1]  = document.createElement('tr');
 
                         var cell = document.createElement('td') ;
-                             cell.appendChild(createTx(cellTx.length,'IBAN: ' +IBAN,'blue','100px','25px','left','12px'));
+                             cell.appendChild(createTx(cellTx.length,'IBAN: ' +IbAn[n],'blue','100px','25px','left','12px'));
 
                         blMainTabRw[n +o+1].appendChild(cell);
                         var cell = document.createElement('td') ;
-                        idNr = getRandomInt(0,10000);
-                             cell.appendChild(createTx(cellTx.length,'Identification: ' +idNr,'green','100px','25px','left','12px'));
+                            cell.appendChild(createTx(cellTx.length,'Identification: ' +idNr[n],'red','100px','25px','left','12px'));
                         blMainTabRw[n +o+1].appendChild(cell);
 
                         var gSum  = Number(sum.toFixed(2));
@@ -962,12 +965,13 @@ function createBlButton(id,text,name) {
         blBtn[id].style.color = 'black';
         if(name.includes('@'))
             blBtn[id].onclick = function(event) {
+               var n = parseInt(event.target.id);
                var iban = '',
                    identify = '',
                    publicKey  = '';
                if(caller.includes('Bank Transfer') || caller.includes('Credit Card')) {
-                    iban = 'IBAN : ' +IBAN;
-                    identify = ' with the Identifier'+ idNr;
+                    iban = 'IBAN : \n' +IbAn[n]+ '\n';
+                    identify = ' with the Identifier: \t'+ idNr[n];
                } else if(caller.includes('Crypto')) {
                        publicKey = 'your BlockChainNetwork:  with the AccountKey(PublicKey):  '; iban = 'BlockChainAccount';
                };
