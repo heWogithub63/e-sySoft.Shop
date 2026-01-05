@@ -358,7 +358,7 @@ function createBilling() {
 
          div_billing.style.width = '300px';
          div_billing.style.height = '380px';
-         div_billing.style.padding = '5px';editReqEdAdd[n].setX((n * mainActivity.frameLy.get(4).getWidth() / 6) + ((n+1) * mainActivity.frameLy.get(4).getWidth() / 6) +10);
+         div_billing.style.padding = '5px';
 
          div_billing.style.overflow = 'auto';
          div_billing.style.overflowX = 'hidden';
@@ -865,7 +865,7 @@ function createButton(id,text) {
                             })
                         }
 
-                        animImg[1].src = 'AnimTimer/timer_black.gif';
+                        animImg[1].src = 'AnimTimer/timer_grey.gif';
                         //dataUpload ('http://localhost:3030/Shop',obj);
                         dataUpload('https://secondhandshop-rmpy.onrender.com/Shop', obj);
                     } else {
