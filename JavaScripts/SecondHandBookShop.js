@@ -9,6 +9,7 @@
    var img_front;
    var img_back;
    var IBAN;
+   var idNr;
    var eMail;
    var Author;
    var Title;
@@ -357,7 +358,8 @@ function createBilling() {
 
          div_billing.style.width = '300px';
          div_billing.style.height = '380px';
-         div_billing.style.padding = '5px';
+         div_billing.style.padding = '5px';editReqEdAdd[n].setX((n * mainActivity.frameLy.get(4).getWidth() / 6) + ((n+1) * mainActivity.frameLy.get(4).getWidth() / 6) +10);
+
          div_billing.style.overflow = 'auto';
          div_billing.style.overflowX = 'hidden';
          div_billing.style.overflowY = 'scroll';
@@ -415,7 +417,8 @@ function createBilling() {
 
                         blMainTabRw[n +o+1].appendChild(cell);
                         var cell = document.createElement('td') ;
-                             cell.appendChild(createTx(cellTx.length,'Identification: ' +getRandomInt(0,10000),'green','100px','25px','left','12px'));
+                        idNr = getRandomInt(0,10000);
+                             cell.appendChild(createTx(cellTx.length,'Identification: ' +idNr,'green','100px','25px','left','12px'));
                         blMainTabRw[n +o+1].appendChild(cell);
 
                         var gSum  = Number(sum.toFixed(2));
@@ -959,10 +962,19 @@ function createBlButton(id,text,name) {
         blBtn[id].style.color = 'black';
         if(name.includes('@'))
             blBtn[id].onclick = function(event) {
+               var iban = '',
+                   identify = '',
+                   publicKey ) = '';
+               if(caller.includes('Bank Transfer') || caller.includes('Credit Card')) {
+                    iban = 'IBAN : ' +IBAN;
+                    identify = ' with the Identifier'+ idNr;
+               } else if(caller.includes('Crypto') {
+                       publicKey = 'your BlockChainNetwork:  with the AccountKey(PublicKey):  '; iban = 'BlockChainAccount';
+               };
 
-               var body = "Hi\nI'm interested in buying your book(s):\n\tI'll prefer to " +caller+ "\n\tYou'll find the detail Information's"+
-                          "\n\tin the attached 'PDF'\n\n\tPlease give me an email back\n\tincludes the Postage\n\tand when you can send the package\n\n\t"+
-                          "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money with the given Identifier";
+               var body = "Hi\nI'm interested in buying your book(s):\n\tI'll prefer to " +caller+ "\n\n\tThe Details could you find\n\tin the attached 'PDF' ( Print of the Receipt ) \n\n\tPlease give me an email back\n\tincludes the Postage\n\t" +
+                          publicKey +"\n\tand the date when you can send the package\n\n\t"+
+                          "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money to your " + iban + identify;
 
                if (Currency === '')
                    window.open('mailto:'+event.target.name+'?subject=Interest on your Book(s)&body='+body);
