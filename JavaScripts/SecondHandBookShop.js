@@ -11,7 +11,7 @@
    var IBAN;
    var IbAn = [];
    var idNr = [];
-   var TxTogether = [];
+
    var eMail;
    var Author;
    var Title;
@@ -399,8 +399,6 @@ function createBilling() {
                      var author = collector[ob][o].Author;
                      var title = collector[ob][o].Title;
                      var price = collector[ob][o].Price;
-                     TxTogether[n] = author+'\n'+title+'\n\t\t\t'+price+' USD';
-
 
                      sum = sum  + parseFloat(price);
 
@@ -447,12 +445,10 @@ function createBilling() {
 
                         blMainTab.appendChild(blMainTabRw[n +o+ 1]);
 
-                        TxTogether[n] = TxTogether[n] +'\n\t\t\t'+ gSum +'  USD  '+curr+' + postage';
                      }
 
              }
 
-             createCanvasTextToPdf(blBtn[n].name.substring(0,blBtn[n].name.indexOf('@')), TxTogether[n]);
          });
 
          div_billing.appendChild(blMainTab);
@@ -567,26 +563,6 @@ function createLupe (n, width, height, xPos, yPos) {
 
     canDIVs[n].appendChild(div5);
 
-}
-
-async function createCanvasTextToPdf(name, text) {
-
-     const canvas = document.createElement('canvas');
-     const ctx = canvas.getContext('2d');
-
-     ctx.font = '20px sans-serif';
-     ctx.textAlign = 'center'; // Align text horizontally
-     ctx.textBaseline = 'middle'; // Align text vertically
-     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-
-     let download = await function() {
-       // only jpeg is supported by jsPDF
-       var imgData = canvas.toDataURL("image/jpeg", 1.0);
-       var pdf = new jsPDF();
-
-       pdf.addImage(imgData, 'JPEG', 0, 0);
-       pdf.save("Download/"+name+".pdf");
-     };
 }
 
 function createSImg(id,path,thema,height,width) {
@@ -1005,12 +981,12 @@ function createBlButton(id,text,name) {
 
                var body = "Hi\nI'm interested in buying your book(s):\n\tI'll prefer to " +caller+ "\n\n\tThe Details could you find\n\tin the attached 'PDF' ( Print of the Receipt ) \n\n\tPlease give me an email back\n\tincludes the Postage\n\t" +
                           publicKey +"\n\tand the date when you can send the package\n\n\t"+
-                          "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money to your " + iban + identify +'\n\nPlease check the attachment !';
+                          "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money to your " + iban + identify;
 
                if (Currency === '')
-                   sendEmail(event.target.name,'Interest on your Book(s)',body,'Download/'+name+'.pdf');
+                   sendEmail(event.target.name,'Interest on your Book(s)',body);
                else
-                   sendMail.sendTo(event.target.name, 'Interest on your Book(s)', body, 'Download/'+name+'.pdf');
+                   sendMail.sendTo(event.target.name, 'Interest on your Book(s)', body);
 
             };
 
@@ -1027,7 +1003,7 @@ function sendEmail(recipient,subject,body,attachment) {
     const fileDataURL = URL.createObjectURL(blob);
 
     // Compose the email link with the data URL as an attachment
-    const emailLink = 'mailto:'+recipient+'?subject='+subject+'&body='+body+'&attachment='+fileDataURL;
+    const emailLink = 'mailto:'+recipient+'?subject='+subject+'&body='+body;
 
     // Open the email client
     window.location.href = emailLink;
