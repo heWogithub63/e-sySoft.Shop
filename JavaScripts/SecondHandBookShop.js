@@ -953,6 +953,7 @@ function createButton(id,text) {
                         while (div2_1.hasChildNodes()) {
                                div2_1.removeChild(div2_1.lastChild);
                         }
+                    count = 0;
                     popupDialog ('popupDialog','none');
                     pmImg[0].src = pmImg[0].src.replace('open','closed') ;
                     pmImg[2].src = pmImg[2].src.replace('open','closed') ;
