@@ -988,10 +988,10 @@ function createBlButton(id,text,name) {
                           publicKey +"\n\tand the date when you can send the package\n\n\t"+
                           "My Address is:\n\n\tSo long I'll got the Postage\n\tI'll transfer the money to your " + iban + identify;
 
-               if (Currency === '')
+               //if (Currency === '')
                    sendEmail(event.target.name,'Interest on your Book(s)',body);
-               else
-                   sendMail.sendTo(event.target.name, 'Interest on your Book(s)', body);
+               /*else
+                   sendMail.sendTo(event.target.name, 'Interest on your Book(s)', body);*/
 
             };
 
